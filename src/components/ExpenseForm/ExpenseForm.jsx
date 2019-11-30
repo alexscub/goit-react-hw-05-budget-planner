@@ -29,6 +29,7 @@ export default class ExpenseForm extends Component {
 
   render() {
     const { name, amount } = this.state;
+    const disable = amount <= 0 || !name;
     return (
       <Form onSubmit={this.handleSubmit}>
         <Label customStyles={labelStyles}>
@@ -50,7 +51,7 @@ export default class ExpenseForm extends Component {
           />
         </Label>
 
-        <Button label="Add" type="submit" />
+        <Button label="Add" type="submit" disable={disable} />
       </Form>
     );
   }

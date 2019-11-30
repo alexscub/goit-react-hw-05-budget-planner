@@ -16,7 +16,7 @@ export default class BudgetForm extends Component {
 
   handleChange = e => {
     this.setState({
-      value: +e.target.value,
+      value: Number(e.target.value),
     });
   };
 
@@ -30,6 +30,7 @@ export default class BudgetForm extends Component {
 
   render() {
     const { value } = this.state;
+    const disable = value <= 0;
     return (
       <Form onSubmit={this.handleSubmit}>
         <Label customStyles={labelStyles}>
@@ -37,7 +38,7 @@ export default class BudgetForm extends Component {
           <Input type="number" value={value} onChange={this.handleChange} />
         </Label>
 
-        <Button label="Save" type="submit" />
+        <Button label="Save" type="submit" disable={disable} />
       </Form>
     );
   }

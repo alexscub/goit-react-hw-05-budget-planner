@@ -24,10 +24,14 @@ const StyledButton = styled.button`
     box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.15);
     background-color: #303f9f;
   }
+  &[disabled] {
+    pointer-events: none;
+    background-color: #bdbdbd;
+  }
 `;
 
-const Button = ({ type, label, onClick }) => (
-  <StyledButton type={type} onClick={onClick}>
+const Button = ({ type, label, onClick, disable }) => (
+  <StyledButton type={type} onClick={onClick} disabled={disable}>
     {label}
   </StyledButton>
 );
@@ -38,6 +42,12 @@ Button.propTypes = {
   type: PropTypes.string,
   label: PropTypes.string,
   onClick: PropTypes.func,
+  disable: PropTypes.bool,
 };
 
-Button.defaultProps = { type: 'button', label: '', onClick: () => null };
+Button.defaultProps = {
+  type: 'button',
+  label: '',
+  onClick: () => null,
+  disable: false,
+};
